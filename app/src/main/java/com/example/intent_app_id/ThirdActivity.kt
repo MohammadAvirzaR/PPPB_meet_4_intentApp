@@ -16,12 +16,23 @@ class ThirdActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityThirdBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val namabaru = intent.getStringExtra("nama")
+        val nimbaru = intent.getStringExtra("nim")
+        val hobbybaru = intent.getStringExtra("hobby")
+
+        binding.edtName.setText(namabaru)
+        binding.edtNim.setText(nimbaru)
+        binding.edtHobby.setText(hobbybaru)
         with(binding){
             buttonDone.setOnClickListener {
-                val resultIntent = Intent()
-                resultIntent.putExtra("name",edtName.text.toString())
-                resultIntent.putExtra("Nim",edtNim.text.toString())
-                resultIntent.putExtra("hobby",edtHobby.text.toString())
+                val resultIntent = Intent().apply {
+                    putExtra("nama",edtName.text.toString())
+                    putExtra("nim",edtNim.text.toString())
+                    putExtra("hobby",edtHobby.text.toString())
+
+                }
+
 
                 setResult(Activity.RESULT_OK,resultIntent)
                 finish()
